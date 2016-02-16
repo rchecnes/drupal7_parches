@@ -1,0 +1,13 @@
+diff --git a/modules/owlcarousel/owlcarousel.module b/modules/owlcarousel/owlcarousel.module
+index b60a8f6..912f063 100644
+--- a/modules/owlcarousel/owlcarousel.module
++++ b/modules/owlcarousel/owlcarousel.module
+@@ -46,7 +46,7 @@ function owlcarousel_library() {
+     'website' => 'http://owlgraphic.com/owlcarousel',
+     'version' => array(),
+     'js' => array(
+-      $library . '/owl.carousel.min.js' => array(
++      $library . '/owl.carousel.js' => array(
+         'scope' => 'footer',
+       ),
+     ),
