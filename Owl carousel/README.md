@@ -8,7 +8,7 @@ Implementar la función afterGoSlider() y dentro de ello agregar la funcionalida
 
 Antes de aplicar el parche considerar lo siguiente
 --------------------------------------------------
-Para aplicar el parche ubicarse en la carpeta sites/
+Para aplicar el parche ubicarse en la carpeta sites/all/
 
 owl.carousel.patch;
 owlcarousel.module.patch
