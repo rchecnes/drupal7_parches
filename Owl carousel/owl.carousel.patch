@@ -1,7 +1,7 @@
-diff --git a/owl-carousel/owl.carousel.js b/owl-carousel/owl.carousel.js
+diff --git a/owl.carousel.js b/owl.carousel.js
 index 51e92c5..af8965e 100644
---- a/owl-carousel/owl.carousel.js
-+++ b/owl-carousel/owl.carousel.js
+--- a/owl.carousel.js
++++ b/owl.carousel.js
 @@ -699,6 +699,10 @@ if (typeof Object.create !== "function") {
              if (typeof base.options.afterMove === "function" && base.prevItem !== base.currentItem) {
                  base.options.afterMove.apply(this, [base.$elem]);
