@@ -6,5 +6,5 @@ Lista de parches
 ----------------
 
 1.	Parche 1: Agrega funcionalidad extra al módulo Owl-carousel en la transición del slider. Este parche se encuentra en la carpeta Owl-carousel.
-	a.	Versión de drupa: 7.41
+	a.	Versión de drupa: 7.41/n
 	b.	Versión de owl-carousel: Versión 2
