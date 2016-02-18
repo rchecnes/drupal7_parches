@@ -2,7 +2,7 @@ Parches para Drupal7 en adelante
 ================================
 Descripción: Los parches, son funcionalidades extras para módulos de Drupal.
 
-Como aplicar parches en drupal: Descargar el parche, luego ejecutar el comando "patch -p1 > nombre_del_parche.patch"
+Como aplicar parches en drupal: Descargar el parche, luego ejecutar el comando "patch -p1 < nombre_del_parche.patch"
 
 Lista de parches
 ----------------
