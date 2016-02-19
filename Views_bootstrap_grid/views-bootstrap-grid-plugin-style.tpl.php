@@ -16,35 +16,23 @@
 <div id="views-bootstrap-grid-<?php print $id ?>" class="<?php print $classes ?>">
   <?php if ($options['alignment'] == 'horizontal'): ?>
 
-    <div class="row<?php if(!empty($options['row_extra_class'])): print ' '.$options['row_extra_class'];endif;?>">
     <?php foreach ($items as $row): ?>
+      <div class="row">
         <?php foreach ($row['content'] as $column): ?>
-          <div class="col col-lg-<?php print $options['col_lg'] ?> col-md-<?php print $options['col_md'] ?> col-sm-<?php print $options['col_sm'] ?> col-xs-<?php print $options['col_xs'] ?><?php if(!empty($options['col_extra_class'])): print ' '.$options['col_extra_class'];endif;?>">
-            <?php if(!empty($options['box_column_class'])):?>
-              <div class="<?php print $options['box_column_class'];?>">
-            <?php endif; ?>
-              <?php print $column['content'] ?>
-            <?php if(!empty($options['box_column_class'])):?>
-              </div>
-            <?php endif; ?>
+          <div class="col col-lg-<?php print $column_type ?>">
+            <?php print $column['content'] ?>
           </div>
         <?php endforeach ?>
+      </div>
     <?php endforeach ?>
-    </div>
-    
+
   <?php else: ?>
 
-    <div class="row<?php if(!empty($options['row_extra_class'])): print ' '.$options['row_extra_class'];endif;?>">
+    <div class="row">
       <?php foreach ($items as $column): ?>
-        <div class="col col-lg-<?php print $options['col_lg'] ?> col-md-<?php print $options['col_md'] ?> col-sm-<?php print $options['col_sm'] ?> col-xs-<?php print $options['col_xs'] ?><?php if(!empty($options['col_extra_class'])): print ' '.$options['col_extra_class'];endif;?>">
+        <div class="col col-lg-<?php print $column_type ?>">
           <?php foreach ($column['content'] as $row): ?>
-            <?php if(!empty($options['box_column_class'])):?>
-              <div class="<?php print $options['box_column_class'];?>">
-            <?php endif; ?>
-              <?php print $row['content'] ?>
-            <?php if(!empty($options['box_column_class'])):?>
-              </div>
-            <?php endif; ?>
+            <?php print $row['content'] ?>
           <?php endforeach ?>
         </div>
       <?php endforeach ?>
