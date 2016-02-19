@@ -1,0 +1,125 @@
+diff --git a/templates/grid/views-bootstrap-grid-plugin-style.tpl.php b/templates/grid/views-bootstrap-grid-plugin-style.tpl.php
+index 633fc3a..9defa32 100644
+--- a/templates/grid/views-bootstrap-grid-plugin-style.tpl.php
++++ b/templates/grid/views-bootstrap-grid-plugin-style.tpl.php
+@@ -16,23 +16,35 @@
+ <div id="views-bootstrap-grid-<?php print $id ?>" class="<?php print $classes ?>">
+   <?php if ($options['alignment'] == 'horizontal'): ?>
+ 
++    <div class="row<?php if(!empty($options['row_extra_class'])): print ' '.$options['row_extra_class'];endif;?>">
+     <?php foreach ($items as $row): ?>
+-      <div class="row">
+         <?php foreach ($row['content'] as $column): ?>
+-          <div class="col col-lg-<?php print $column_type ?>">
+-            <?php print $column['content'] ?>
++          <div class="col col-lg-<?php print $options['col_lg'] ?> col-md-<?php print $options['col_md'] ?> col-sm-<?php print $options['col_sm'] ?> col-xs-<?php print $options['col_xs'] ?><?php if(!empty($options['col_extra_class'])): print ' '.$options['col_extra_class'];endif;?>">
++            <?php if(!empty($options['box_column_class'])):?>
++              <div class="<?php print $options['box_column_class'];?>">
++            <?php endif; ?>
++              <?php print $column['content'] ?>
++            <?php if(!empty($options['box_column_class'])):?>
++              </div>
++            <?php endif; ?>
+           </div>
+         <?php endforeach ?>
+-      </div>
+     <?php endforeach ?>
+-
++    </div>
++    
+   <?php else: ?>
+ 
+-    <div class="row">
++    <div class="row<?php if(!empty($options['row_extra_class'])): print ' '.$options['row_extra_class'];endif;?>">
+       <?php foreach ($items as $column): ?>
+-        <div class="col col-lg-<?php print $column_type ?>">
++        <div class="col col-lg-<?php print $options['col_lg'] ?> col-md-<?php print $options['col_md'] ?> col-sm-<?php print $options['col_sm'] ?> col-xs-<?php print $options['col_xs'] ?><?php if(!empty($options['col_extra_class'])): print ' '.$options['col_extra_class'];endif;?>">
+           <?php foreach ($column['content'] as $row): ?>
+-            <?php print $row['content'] ?>
++            <?php if(!empty($options['box_column_class'])):?>
++              <div class="<?php print $options['box_column_class'];?>">
++            <?php endif; ?>
++              <?php print $row['content'] ?>
++            <?php if(!empty($options['box_column_class'])):?>
++              </div>
++            <?php endif; ?>
+           <?php endforeach ?>
+         </div>
+       <?php endforeach ?>
+diff --git a/plugins/grid/views_bootstrap_grid_plugin_style.inc b/plugins/grid/views_bootstrap_grid_plugin_style.inc
+index 6704631..8d5d7cd 100644
+--- a/plugins/grid/views_bootstrap_grid_plugin_style.inc
++++ b/plugins/grid/views_bootstrap_grid_plugin_style.inc
+@@ -14,7 +14,15 @@ class ViewsBootstrapGridPluginStyle extends views_plugin_style {
+   public function option_definition() {
+     $options = parent::option_definition();
+     $options['alignment'] = array('default' => 'horizontal');
+-    $options['columns'] = array('default' => 2);
++    $options['columns']         = array('default' => 3);
++    $options['col_lg']          = array('default' => 3);
++    $options['col_md']          = array('default' => 4);
++    $options['col_sm']          = array('default' => 6);
++    $options['col_xs']          = array('default' => 12);
++    $options['col_extra_class'] = array('default' => null);
++    $options['row_extra_class'] = array('default' => null);
++    $options['box_column_class']= array('default' => null);
++
+     return $options;
+   }
+ 
+@@ -45,5 +53,55 @@ class ViewsBootstrapGridPluginStyle extends views_plugin_style {
+       '#required' => TRUE,
+       '#default_value' => $this->options['columns'],
+     );
++    $form['col_lg'] = array(
++      '#type' => 'select',
++      '#title' => t('Large devices'),
++      '#default_value' => $this->options['col_lg'],
++      '#description' => t('col-lg-*'),
++      '#options' => array_combine($options, $options),
++      '#required' => TRUE,
++    );
++    $form['col_md'] = array(
++      '#type' => 'select',
++      '#title' => t('Medium devices'),
++      '#default_value' => $this->options['col_md'],
++      '#description' => t('col-md-*'),
++      '#options' => array_combine($options, $options),
++      '#required' => TRUE,
++    );
++    $form['col_sm'] = array(
++      '#type' => 'select',
++      '#title' => t('Small devices'),
++      '#default_value' => $this->options['col_sm'],
++      '#description' => t('col-sm-*'),
++      '#options' => array_combine($options, $options),
++      '#required' => TRUE,
++    );
++    $form['col_xs'] = array(
++      '#type' => 'select',
++      '#title' => t('Extra small devices'),
++      '#default_value' => $this->options['col_xs'],
++      '#description' => t('col-xs-*'),
++      '#options' => array_combine($options, $options),
++      '#required' => TRUE,
++     );
++    $form['col_extra_class'] = array(
++      '#type' => 'textfield',
++      '#title' => t('Column Class'),
++      '#default_value' => $this->options['col_extra_class'],
++      '#required' => FALSE,
++     );
++    $form['row_extra_class'] = array(
++      '#type' => 'textfield',
++      '#title' => t('Row Class'),
++      '#default_value' => $this->options['row_extra_class'],
++      '#required' => FALSE,
++     );
++    $form['box_column_class'] = array(
++      '#type' => 'textfield',
++      '#title' => t('Box Class'),
++      '#default_value' => $this->options['box_column_class'],
++      '#required' => FALSE,
++     );
+   }
+ }
