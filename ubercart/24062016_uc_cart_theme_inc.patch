@@ -1,0 +1,43 @@
+diff --git a/ubercart/uc_cart.theme.inc b/ubercart/uc_cart.theme.inc
+index 18c01e3..c2483d2 100644
+--- a/ubercart/uc_cart.theme.inc
++++ b/ubercart/uc_cart.theme.inc
+@@ -39,17 +39,17 @@ function theme_uc_cart_block_title($variables) {
+   // Add the main title span and text, with or without the arrow based on the
+   // cart block collapsibility settings.
+   if ($collapsible) {
+-    $output .= '<span class="cart-block-title-bar" title="' . t('Show/hide shopping cart contents.') . '">' . $title;
++    $output .= '<a href="" id="toggle_view_order" class="cart-block-title-bar" title="' . t('Show/hide shopping cart contents.') . '">' . $title;
+     if ($collapsed) {
+       $output .= '<span class="cart-block-arrow arrow-down"></span>';
+     }
+     else {
+       $output .= '<span class="cart-block-arrow"></span>';
+     }
+-    $output .= '</span>';
++    $output .= '</a>';
+   }
+   else {
+-    $output .= '<span class="cart-block-title-bar">' . $title . '</span>';
++    $output .= '<a href="" id="toggle_view_order" class="cart-block-title-bar">' . $title . '</a>';
+   }
+ 
+   return $output;
+@@ -102,7 +102,7 @@ function theme_uc_cart_block_content($variables) {
+   $summary_links = $variables['summary_links'];
+   $collapsed = $variables['collapsed'];
+ 
+-  $output = '';
++  $output = '<div class="group-shopping-cart">';
+ 
+   // Add the help text if enabled.
+   if ($help_text) {
+@@ -114,7 +114,7 @@ function theme_uc_cart_block_content($variables) {
+ 
+   // Add the summary section beneath the items table.
+   $output .= theme('uc_cart_block_summary', array('item_count' => $item_count, 'item_text' => $item_text, 'total' => $total, 'summary_links' => $summary_links));
+-
++  $output .= '</div>';
+   return $output;
+ }
+ 
