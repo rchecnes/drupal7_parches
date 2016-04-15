@@ -1,7 +1,7 @@
 diff --git a/uc_cart/uc_cart.theme.inc b/uc_cart/uc_cart.theme.inc
 index 18c01e3..1774e99 100644
---- a/ubercart/uc_cart/uc_cart.theme.inc
-+++ b/ubercart/uc_cart/uc_cart.theme.inc
+--- a/uc_cart/uc_cart.theme.inc
++++ b/uc_cart/uc_cart.theme.inc
 @@ -33,23 +33,23 @@ function theme_uc_cart_block_title($variables) {
  
    // Add in the cart image if specified.
